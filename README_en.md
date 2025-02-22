@@ -25,6 +25,9 @@
 
 [中文](./README.md) | English
 
+🎉💻[IPTV-Web](https://github.com/Guovin/iptv-web): IPTV live stream management platform, supports online playback and
+other features, under development...
+
 - [✅ Features](#features)
 - [🔗 Latest results](#latest-results)
 - [⚙️ Config parameter](#Config)
@@ -73,14 +76,12 @@
 - Interface source:
 
 ```bash
-https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u
 ```
 
 ```bash
-https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
 ```
-
-🙏 Thanks to [ghproxy.cc](https://ghproxy.cc) for providing proxy acceleration services
 
 or
 
@@ -95,7 +96,7 @@ https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/output/result.txt
 - Data source:
 
 ```bash
-https://ghproxy.cc/https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
+https://raw.githubusercontent.com/Guovin/iptv-api/gd/source.json
 ```
 
 or
@@ -114,13 +115,13 @@ https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
 | open_filter_speed      | Enable speed filtering, interfaces with speed lower than the minimum speed (min_speed) will be filtered                                                                                                                                                                                                                                                                                                                          | True              |
 | open_hotel             | Enable the hotel source function, after closing it all hotel source working modes will be disabled                                                                                                                                                                                                                                                                                                                               | True              |
 | open_hotel_foodie      | Enable Foodie hotel source work mode                                                                                                                                                                                                                                                                                                                                                                                             | True              |
-| open_hotel_fofa        | Enable FOFA、ZoomEye hotel source work mode                                                                                                                                                                                                                                                                                                                                                                                       | True              |
+| open_hotel_fofa        | Enable FOFA、ZoomEye hotel source work mode                                                                                                                                                                                                                                                                                                                                                                                       | False             |
 | open_keep_all          | Enable retain all search results, retain results with non-template channel names, recommended to be turned on when manually maintaining                                                                                                                                                                                                                                                                                          | False             |
 | open_local             | Enable local source function, will use the data in the template file and the local source file                                                                                                                                                                                                                                                                                                                                   | True              |
 | open_m3u_result        | Enable the conversion to generate m3u file type result links, supporting the display of channel icons                                                                                                                                                                                                                                                                                                                            | True              |
 | open_multicast         | Enable the multicast source function, after disabling it all multicast sources will stop working                                                                                                                                                                                                                                                                                                                                 | True              |
 | open_multicast_foodie  | Enable Foodie multicast source work mode                                                                                                                                                                                                                                                                                                                                                                                         | True              |
-| open_multicast_fofa    | Enable FOFA multicast source work mode                                                                                                                                                                                                                                                                                                                                                                                           | True              |
+| open_multicast_fofa    | Enable FOFA multicast source work mode                                                                                                                                                                                                                                                                                                                                                                                           | False             |
 | open_online_search     | Enable keyword search source feature                                                                                                                                                                                                                                                                                                                                                                                             | False             |
 | open_proxy             | Enable proxy, automatically obtains free available proxies, If there are no updates, this mode can be enabled                                                                                                                                                                                                                                                                                                                    | False             |
 | open_request           | Enable query request, the data is obtained from the network (only for hotel sources and multicast sources)                                                                                                                                                                                                                                                                                                                       | False             |
@@ -142,7 +143,7 @@ https://cdn.jsdelivr.net/gh/Guovin/iptv-api@gd/source.json
 | ipv6_num               | The preferred number of IPv6 interfaces in the result                                                                                                                                                                                                                                                                                                                                                                            | 5                 |
 | ipv6_support           | It is forced to consider that the current network supports IPv6 and skip the check                                                                                                                                                                                                                                                                                                                                               | False             |
 | ipv_type               | The protocol type of interface in the generated result, optional values: ipv4, ipv6, all                                                                                                                                                                                                                                                                                                                                         | all               |
-| ipv_type_prefer        | Interface protocol type preference, prioritize interfaces of this type in the results, optional values: ipv4, ipv6, auto                                                                                                                                                                                                                                                                                                         | auto              |
+| ipv_type_prefer        | Interface protocol type preference, prioritize interfaces of this type in the results, optional values: ipv4, ipv6, auto                                                                                                                                                                                                                                                                                                         | ipv6,ipv4         |
 | local_file             | Local source file path                                                                                                                                                                                                                                                                                                                                                                                                           | config/local.txt  |
 | local_num              | Preferred number of local source interfaces in the result                                                                                                                                                                                                                                                                                                                                                                        | 10                |
 | min_resolution         | Minimum interface resolution, requires enabling open_filter_resolution to take effect                                                                                                                                                                                                                                                                                                                                            | 1920x1080         |
@@ -287,8 +288,7 @@ Taking the host path /etc/docker as an example:
 - Scheduled execution time
 
 ```bash
--e UPDATE_CRON1="0 22 * * *"
--e UPDATE_CRON2="0 10 * * *"
+-e UPDATE_CRON="0 22,10 * * *"
 ```
 
 #### 3. Update results
